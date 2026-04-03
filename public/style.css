@@ -276,6 +276,15 @@ section { padding: 64px 0; }
   font-size: 18px;
 }
 
+/* ---- FV LINE button (larger) ---- */
+.btn-line-fv-large {
+  font-size: 18px;
+  padding: 18px 32px;
+  font-weight: 900;
+  box-shadow: 0 6px 24px rgba(6,199,85,.55);
+}
+.btn-line-fv-large .btn-icon { font-size: 22px; }
+
 /* ---- CTA Buttons ---- */
 .cta-group {
   display: flex;
