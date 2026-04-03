@@ -259,6 +259,23 @@ section { padding: 64px 0; }
 }
 .tokuten-text strong { color: #FFD54F; font-size: 16px; }
 
+/* ---- FV 期間限定プレゼント (enlarged) ---- */
+#tokuten-fv {
+  border: 2px solid #FFD54F;
+  background: rgba(255,213,79,.15);
+  padding: 20px 24px;
+}
+#tokuten-fv .tokuten-label {
+  font-size: 18px;
+  letter-spacing: .08em;
+}
+#tokuten-fv .tokuten-text {
+  font-size: 16px;
+}
+#tokuten-fv .tokuten-text strong {
+  font-size: 18px;
+}
+
 /* ---- CTA Buttons ---- */
 .cta-group {
   display: flex;
