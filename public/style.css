@@ -1261,3 +1261,95 @@ section { padding: 64px 0; }
 @media (min-width: 641px) {
   .sticky-cta-bar { display: none; }
 }
+
+/* ================================================
+   デッドニング施工事例セクション
+   ================================================ */
+.deadening { text-align: center; }
+
+.deadening-before-after {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin: 36px 0 32px;
+}
+
+.ba-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.ba-label {
+  display: inline-block;
+  padding: 6px 20px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+.ba-label-before {
+  background: #F5F7FA;
+  color: var(--gray);
+  border: 2px solid #D0D8E4;
+}
+.ba-label-after {
+  background: var(--green-l);
+  color: var(--green);
+  border: 2px solid var(--green);
+}
+
+.ba-img-wrap {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 3px solid #fff;
+}
+.ba-img-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform .4s ease;
+}
+.ba-img-wrap img:hover { transform: scale(1.03); }
+
+.ba-caption {
+  font-size: 13px;
+  color: var(--gray);
+  line-height: 1.7;
+  text-align: center;
+  padding: 0 4px;
+}
+
+.ba-arrow {
+  font-size: 32px;
+  color: var(--blue);
+  font-weight: 700;
+  flex-shrink: 0;
+  padding-top: 120px;
+}
+
+.deadening-voice {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.deadening-voice-card {
+  background: var(--white);
+}
+
+@media (max-width: 640px) {
+  .deadening-before-after {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .ba-arrow {
+    padding-top: 0;
+    transform: rotate(90deg);
+    text-align: center;
+  }
+}
