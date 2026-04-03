@@ -23,7 +23,7 @@
   --shadow-lg: 0 8px 40px rgba(0,0,0,.14);
   --radius: 12px;
   --radius-lg: 20px;
-  --font: 'Noto Sans JP', sans-serif;
+  --font: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic UI', 'Meiryo', sans-serif;
 }
 
 html { scroll-behavior: smooth; }
