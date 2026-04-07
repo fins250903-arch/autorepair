@@ -1,6 +1,8 @@
 ---
 
-const assetBase = import.meta.env.BASE_URL ?? '/';
+// public/ ファイルは dist/ ルートに出力されるため、Vercel では '/'.
+// GitHub Pages ワークフローのみ PUBLIC_ASSET_BASE=/autorepair/ をセットする.
+const assetBase = import.meta.env.PUBLIC_ASSET_BASE ?? '/';
 
 ---
 

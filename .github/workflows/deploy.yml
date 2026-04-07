@@ -27,12 +27,13 @@ jobs:
       - run: npm ci
       - env:
           DEPLOY_TARGET: github-pages
+          PUBLIC_ASSET_BASE: /autorepair/
         run: npm run build
       - run: |
           mkdir -p pages-dist
           cp -r dist/. pages-dist/
-          cp dist/aichi/index.html pages-dist/index.html
-          rm -rf pages-dist/aichi
+          cp dist/autorepair/index.html pages-dist/index.html
+          rm -rf pages-dist/autorepair
       - uses: actions/upload-pages-artifact@v3
         with:
           path: pages-dist/
