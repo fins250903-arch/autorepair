@@ -692,6 +692,86 @@ section { padding: 64px 0; }
 }
 
 /* ================================================
+   BLOG HIGHLIGHT
+   ================================================ */
+.blog-highlight { text-align: center; }
+
+.blog-card {
+  display: grid;
+  grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+  align-items: stretch;
+  gap: 0;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid #E4ECF6;
+  text-align: left;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.blog-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 44px rgba(13,61,122,.16);
+}
+
+.blog-card-image {
+  min-height: 100%;
+  background: linear-gradient(135deg, #D9E8F8 0%, #F4F8FC 100%);
+}
+
+.blog-card-image img {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  object-fit: cover;
+}
+
+.blog-card-body {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.blog-card-label {
+  display: inline-flex;
+  align-self: flex-start;
+  margin-bottom: 14px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--blue-l);
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .06em;
+}
+
+.blog-card-body h3 {
+  font-size: clamp(20px, 3vw, 30px);
+  line-height: 1.45;
+  color: var(--blue-d);
+  margin-bottom: 14px;
+}
+
+.blog-card-body p {
+  color: var(--gray);
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 18px;
+}
+
+.blog-card-link {
+  color: var(--red);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.blog-card-link::after {
+  content: ' →';
+}
+
+/* ================================================
    STEP 7: TARGET
    ================================================ */
 .target { text-align: center; }
@@ -1242,6 +1322,10 @@ section { padding: 64px 0; }
 
   .flow-steps { flex-direction: column; align-items: stretch; }
   .flow-arrow { display: none; }
+
+  .blog-card { grid-template-columns: 1fr; }
+  .blog-card-image img { min-height: 220px; }
+  .blog-card-body { padding: 22px 20px; }
 
   .reason-num { width: 56px; font-size: 16px; }
   .reason-body { padding: 18px; }

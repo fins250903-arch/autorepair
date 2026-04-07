@@ -23,11 +23,19 @@ jobs:
         with:
           node-version: 22
           cache: npm
+      - uses: actions/configure-pages@v5
       - run: npm ci
-      - run: npm run build
+      - env:
+          DEPLOY_TARGET: github-pages
+        run: npm run build
+      - run: |
+          mkdir -p pages-dist
+          cp -r dist/. pages-dist/
+          cp dist/aichi/index.html pages-dist/index.html
+          rm -rf pages-dist/aichi
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist/
+          path: pages-dist/
 
   deploy:
     needs: build

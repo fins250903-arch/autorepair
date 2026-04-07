@@ -105,6 +105,92 @@
   });
 
   /* ==============================
+     Latest Blog Card
+     ============================== */
+  async function initLatestBlogCard() {
+    const card = document.getElementById('latestBlogCard');
+    const title = document.getElementById('latestBlogTitle');
+    const excerpt = document.getElementById('latestBlogExcerpt');
+    const image = document.getElementById('latestBlogImage');
+
+    if (!card || !title || !excerpt || !image) return;
+
+    function decodeHtml(value) {
+      return value
+        .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')
+        .replace(/&#(\d+);/g, function (_match, code) { return String.fromCharCode(Number(code)); })
+        .replace(/&amp;/g, '&')
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'")
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .trim();
+    }
+
+    function stripHtml(value) {
+      return decodeHtml(value)
+        .replace(/<script[\s\S]*?<\/script>/gi, '')
+        .replace(/<style[\s\S]*?<\/style>/gi, '')
+        .replace(/<[^>]+>/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
+    function clampText(value, maxLength) {
+      if (value.length <= maxLength) return value;
+      return value.slice(0, maxLength).trimEnd() + '...';
+    }
+
+    function extractTag(xml, tagName) {
+      const match = xml.match(new RegExp('<' + tagName + '[^>]*>([\\s\\S]*?)<\\/' + tagName + '>', 'i'));
+      return match && match[1] ? decodeHtml(match[1]) : '';
+    }
+
+    function extractFirstImage(value) {
+      const patterns = [
+        /<enclosure[^>]+url=["']([^"']+)["']/i,
+        /<media:content[^>]+url=["']([^"']+)["']/i,
+        /<img[^>]+src=["']([^"']+)["']/i,
+      ];
+
+      for (const pattern of patterns) {
+        const match = value.match(pattern);
+        if (match && match[1]) {
+          return decodeHtml(match[1]);
+        }
+      }
+
+      return image.getAttribute('src') || '';
+    }
+
+    try {
+      const response = await fetch('https://blog.autorepair.abura.site/feed/');
+      if (!response.ok) return;
+
+      const xml = await response.text();
+      const itemMatch = xml.match(/<item[\s\S]*?<\/item>/i);
+      if (!itemMatch) return;
+
+      const item = itemMatch[0];
+      const nextTitle = stripHtml(extractTag(item, 'title'));
+      const nextUrl = extractTag(item, 'link');
+      const content = extractTag(item, 'content:encoded') || extractTag(item, 'description');
+      const nextExcerpt = clampText(stripHtml(content || excerpt.textContent || ''), 110);
+      const nextImage = extractFirstImage(content || item);
+
+      if (nextTitle) title.textContent = nextTitle;
+      if (nextUrl) card.setAttribute('href', nextUrl);
+      if (nextExcerpt) excerpt.textContent = nextExcerpt;
+      if (nextImage) {
+        image.setAttribute('src', nextImage);
+        image.setAttribute('alt', nextTitle || '最新ブログ記事');
+      }
+    } catch (_error) {
+      // CORSなどで取得できない場合は、初期表示のフォールバックをそのまま使う
+    }
+  }
+
+  /* ==============================
      FAQ – smooth open animation
      ============================== */
   document.querySelectorAll('.faq-item').forEach(item => {
@@ -144,6 +230,7 @@
   updateStickyHeader();
   updateStickyCta();
   initReveal();
+  initLatestBlogCard();
 
   /* ==============================
      Current Year in footer
