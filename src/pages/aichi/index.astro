@@ -245,24 +245,36 @@ const assetBase = import.meta.env.PUBLIC_ASSET_BASE ?? '/';
           "@type": "Offer",
           "name": "飛び石傷リペア",
           "description": "飛び石による直径2cm以内の傷（欠け・クラック）を専用樹脂注入で修理。施工時間30〜60分、出張費込み、車検適合保証付き。",
-          "price": "16500",
-          "priceCurrency": "JPY",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "16500",
+            "priceCurrency": "JPY",
+            "description": "税込み・出張費込み。傷のサイズ・複数箇所・遠距離出張の場合は追加費用が発生する場合があります。"
+          },
           "availability": "https://schema.org/InStock"
         },
         {
           "@type": "Offer",
           "name": "ヒビ割れリペア（クラックリペア）",
           "description": "フロントウインドウのヒビ割れ・亀裂を専用樹脂注入で修理。ヒビの進行を止め視界を回復。出張費込み、生涯再リペア無料保証付き。",
-          "price": "16500",
-          "priceCurrency": "JPY",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "16500",
+            "priceCurrency": "JPY",
+            "description": "税込み・出張費込み。ヒビの長さ・状態によって料金が変わる場合があります。まず無料診断でご確認ください。"
+          },
           "availability": "https://schema.org/InStock"
         },
         {
           "@type": "Offer",
           "name": "欠け（チッピング）リペア",
           "description": "小石による欠け傷（チッピング）を専用樹脂で修理。直径2cm以内の欠け傷が対象。愛知県三河・名古屋への出張費込み。",
-          "price": "16500",
-          "priceCurrency": "JPY",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "16500",
+            "priceCurrency": "JPY",
+            "description": "税込み・出張費込み。欠けの深さ・複合クラックの有無によって料金が変わる場合があります。"
+          },
           "availability": "https://schema.org/InStock"
         }
       ]
