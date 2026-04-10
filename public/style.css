@@ -157,7 +157,7 @@ section { padding: 64px 0; }
   position: relative;
   min-height: 100svh;
   background:
-    linear-gradient(160deg, rgba(13,61,122,.88) 0%, rgba(13,61,122,.72) 60%, rgba(30,95,171,.60) 100%),
+    linear-gradient(160deg, rgba(13,61,122,.68) 0%, rgba(13,61,122,.54) 60%, rgba(30,95,171,.42) 100%),
     url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=80') center/cover no-repeat;
   display: flex;
   flex-direction: column;
@@ -175,10 +175,17 @@ section { padding: 64px 0; }
 }
 
 .fv-keywords {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 8px;
-  margin-bottom: 16px;
+  padding: 10px 20px;
+  background: rgba(0,0,0,.25);
+  z-index: 3;
   animation: fadeInDown .5s ease both;
 }
 .fv-keywords span {
@@ -303,6 +310,13 @@ section { padding: 64px 0; }
   box-shadow: 0 6px 24px rgba(6,199,85,.55);
 }
 .btn-line-fv-large .btn-icon { font-size: 22px; }
+
+/* ---- FV phone button (smaller, balanced with LINE) ---- */
+#btn-tel-fv {
+  font-size: 15px;
+  padding: 13px 28px;
+  max-width: 340px;
+}
 
 /* ---- CTA Buttons ---- */
 .cta-group {
