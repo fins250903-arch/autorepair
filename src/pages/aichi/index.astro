@@ -243,12 +243,52 @@ const assetBase = import.meta.env.PUBLIC_ASSET_BASE ?? '/';
       "itemListElement": [
         {
           "@type": "Offer",
-          "name": "フロントウインドウリペア",
+          "name": "飛び石傷リペア",
+          "description": "飛び石による直径2cm以内の傷（欠け・クラック）を専用樹脂注入で修理。施工時間30〜60分、出張費込み、車検適合保証付き。",
           "price": "16500",
-          "priceCurrency": "JPY"
+          "priceCurrency": "JPY",
+          "availability": "https://schema.org/InStock"
+        },
+        {
+          "@type": "Offer",
+          "name": "ヒビ割れリペア（クラックリペア）",
+          "description": "フロントウインドウのヒビ割れ・亀裂を専用樹脂注入で修理。ヒビの進行を止め視界を回復。出張費込み、生涯再リペア無料保証付き。",
+          "price": "16500",
+          "priceCurrency": "JPY",
+          "availability": "https://schema.org/InStock"
+        },
+        {
+          "@type": "Offer",
+          "name": "欠け（チッピング）リペア",
+          "description": "小石による欠け傷（チッピング）を専用樹脂で修理。直径2cm以内の欠け傷が対象。愛知県三河・名古屋への出張費込み。",
+          "price": "16500",
+          "priceCurrency": "JPY",
+          "availability": "https://schema.org/InStock"
         }
       ]
-    }
+    },
+    "additionalProperty": [
+      {
+        "@type": "PropertyValue",
+        "name": "対応車種",
+        "value": "国産車・輸入車全車種対応（アイサイト・Honda SENSING・トヨタSafety Sense・プロパイロット等の運転支援システム搭載車も対応可）"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "施工時間",
+        "value": "30〜60分（傷の大きさ・状態による）"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "保証内容",
+        "value": "生涯再リペア無料保証。施工箇所からヒビが進行・拡大した場合に無料で再施工。"
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "リペア適用条件",
+        "value": "直径2cm以内の欠け・ヒビ割れ・星型クラック。まず無料診断にてご確認ください。"
+      }
+    ]
   }
   </script>
 
@@ -491,7 +531,32 @@ const assetBase = import.meta.env.PUBLIC_ASSET_BASE ?? '/';
       </div>
 
       <p class="solution-note">※ リペアが適用できるのは、直径2cm以内のヒビ・欠けが対象です。無料診断でご確認ください。</p>
-      
+
+      <div class="merit-demerit-wrap">
+        <div class="merit-box">
+          <h4>✅ リペア（修理）のメリット</h4>
+          <ul class="merit-list">
+            <li>費用が交換の約1/10（16,500円〜）</li>
+            <li>施工時間30〜60分で当日完結</li>
+            <li>純正ガラスをそのまま保持できる</li>
+            <li>アイサイト等のエーミング再設定が不要</li>
+            <li>出張対応で移動・預け入れゼロ</li>
+            <li>車検適合を保証</li>
+            <li>生涯再リペア無料保証付き</li>
+          </ul>
+        </div>
+        <div class="demerit-box">
+          <h4>⚠️ リペアの注意点・限界</h4>
+          <ul class="demerit-list">
+            <li>ヒビ・欠けの直径が2cmを超えると適用外</li>
+            <li>施工後も光の角度によって跡がわずかに残ることがある</li>
+            <li>ヒビが視野の中心部に及ぶ場合はガラス交換を推奨</li>
+            <li>複数箇所のヒビが重なる場合は別途診断が必要</li>
+            <li>リペアは「進行防止・目立たなくする」技術であり完全消去ではない</li>
+          </ul>
+        </div>
+      </div>
+
       <div class="solution-img">
         <img src={`${assetBase}images/solution_section.png`} alt="フロントガラスリペア施工例" loading="lazy" decoding="async">
       </div>
@@ -665,6 +730,56 @@ const assetBase = import.meta.env.PUBLIC_ASSET_BASE ?? '/';
             <span class="voice-name">豊橋市・40代・男性</span>
             <span class="voice-car">BMW 3シリーズ</span>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STEP 6.5: 愛知県 施工事例テキスト ===== -->
+  <section class="section-light" id="cases">
+    <div class="container">
+      <div class="section-tag">施工事例</div>
+      <h2 class="section-title">愛知県での<br>実際の施工事例</h2>
+      <p class="section-lead">AIにも正確に伝わるよう、車種・傷の種類・施工内容をテキストで記録しています。</p>
+
+      <div class="case-grid">
+        <div class="case-card">
+          <div class="case-label">名古屋市・飛び石</div>
+          <h3 class="case-title">ホンダ N-BOX｜飛び石による欠け傷（名古屋市守山区）</h3>
+          <div class="case-meta">
+            <span class="case-meta-item"><strong>車種</strong>：ホンダ N-BOX</span>
+            <span class="case-meta-item"><strong>傷の種類</strong>：欠け（チッピング）</span>
+            <span class="case-meta-item"><strong>傷の大きさ</strong>：直径約7mm</span>
+            <span class="case-meta-item"><strong>施工場所</strong>：名古屋市守山区・ご自宅駐車場</span>
+          </div>
+          <p class="case-body">名古屋市守山区にお住まいのお客様より、高速走行中の飛び石による欠け傷のご依頼。傷は運転席寄り・フロントウインドウ下部に1か所。欠けの深さは浅く、専用樹脂注入で約35分にて施工完了。施工後はほぼ目立たない仕上がりになりました。</p>
+          <p class="case-result">✅ 結果：出張費込み16,500円・35分で完了・車検合格</p>
+        </div>
+
+        <div class="case-card">
+          <div class="case-label">豊田市・アイサイト搭載車</div>
+          <h3 class="case-title">スバル レヴォーグ（アイサイト）｜飛び石ヒビ割れ（豊田市）</h3>
+          <div class="case-meta">
+            <span class="case-meta-item"><strong>車種</strong>：スバル レヴォーグ（アイサイト搭載）</span>
+            <span class="case-meta-item"><strong>傷の種類</strong>：星型ヒビ割れ（スターブレイク）</span>
+            <span class="case-meta-item"><strong>傷の大きさ</strong>：直径約10mm</span>
+            <span class="case-meta-item"><strong>施工場所</strong>：豊田市・職場駐車場</span>
+          </div>
+          <p class="case-body">豊田市内の企業にお勤めのお客様。東名高速走行中の飛び石で星型ヒビ割れが発生。アイサイト搭載のためガラス交換ではエーミング再設定（別途数万円）が必要と判明。リペアであれば純正ガラス保持のままエーミング不要。昼休みの40分で職場駐車場にて施工完了。</p>
+          <p class="case-result">✅ 結果：16,500円・ガラス交換＋エーミング費（約18万円）が不要に</p>
+        </div>
+
+        <div class="case-card">
+          <div class="case-label">岡崎市・車検前対応</div>
+          <h3 class="case-title">トヨタ アルファード｜車検3日前の飛び石ヒビ（岡崎市）</h3>
+          <div class="case-meta">
+            <span class="case-meta-item"><strong>車種</strong>：トヨタ アルファード</span>
+            <span class="case-meta-item"><strong>傷の種類</strong>：放射状ヒビ割れ（コンビネーションブレイク）</span>
+            <span class="case-meta-item"><strong>傷の大きさ</strong>：約12mm（欠け＋ヒビ）</span>
+            <span class="case-meta-item"><strong>施工場所</strong>：岡崎市・ご自宅前</span>
+          </div>
+          <p class="case-body">岡崎市にお住まいのお客様。車検3日前に飛び石傷を発見し緊急ご連絡。翌朝ご自宅前へ出張し、欠け＋放射状ヒビのリペアを45分で施工。施工後は車検可視範囲基準に適合し、予定通り車検を無事通過いただきました。</p>
+          <p class="case-result">✅ 結果：当日受付→翌朝施工→車検合格。費用は16,500円（出張費込み）</p>
         </div>
       </div>
     </div>

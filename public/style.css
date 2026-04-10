@@ -1486,3 +1486,139 @@ section { padding: 64px 0; }
   .area-link-card h3 { font-size: 15px; margin-bottom: 4px; }
   .area-link-card p { font-size: 12px; margin-bottom: 10px; }
 }
+
+/* ================================================
+   CASE STUDIES (施工事例) SECTION
+   ================================================ */
+.case-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  margin: 32px 0;
+}
+
+.case-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--blue);
+  transition: box-shadow 0.2s;
+}
+
+.case-card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.case-label {
+  display: inline-block;
+  background: var(--blue-l);
+  color: var(--blue);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  padding: 3px 12px;
+  border-radius: 40px;
+  margin-bottom: 10px;
+}
+
+.case-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--dark);
+  line-height: 1.5;
+}
+
+.case-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.case-meta-item {
+  font-size: 12px;
+  background: var(--light);
+  padding: 3px 10px;
+  border-radius: 20px;
+  color: var(--dark);
+}
+
+.case-meta-item strong {
+  color: var(--blue);
+}
+
+.case-body {
+  font-size: 14px;
+  color: var(--gray);
+  line-height: 1.75;
+}
+
+.case-result {
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: var(--green-l);
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--green);
+  font-weight: 700;
+}
+
+/* ================================================
+   MERIT / DEMERIT SECTION
+   ================================================ */
+.merit-demerit-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 28px 0 8px;
+}
+
+@media (max-width: 600px) {
+  .merit-demerit-wrap { grid-template-columns: 1fr; }
+}
+
+.merit-box, .demerit-box {
+  padding: 22px 20px;
+  border-radius: var(--radius);
+}
+
+.merit-box {
+  background: var(--green-l);
+  border-left: 4px solid var(--green);
+}
+
+.demerit-box {
+  background: #FFF8E1;
+  border-left: 4px solid #F9A825;
+}
+
+.merit-box h4, .demerit-box h4 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.merit-box h4 { color: var(--green); }
+.demerit-box h4 { color: #E65100; }
+
+.merit-list, .demerit-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.merit-list li, .demerit-list li {
+  font-size: 14px;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.6;
+}
+
+.merit-list li:last-child, .demerit-list li:last-child {
+  border-bottom: none;
+}
