@@ -612,6 +612,7 @@ section { padding: 64px 0; }
    ================================================ */
 .cta-section { padding: 56px 0; text-align: center; }
 .cta-section .cta-group { animation: none; }
+.cta-section .cta-group .btn-line:not(.btn-large) { padding: 18px 32px; }
 .cta-section .tokuten-box { max-width: 480px; margin: 0 auto 24px; }
 
 .cta-final-title {
