@@ -1,0 +1,234 @@
+---
+import { getCollection, render } from 'astro:content';
+import BlogLayout from '../../layouts/BlogLayout.astro';
+
+// Generate static paths for each blog post
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.data.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const formattedDate = new Date(post.data.pubDate).toLocaleDateString('ja-JP', {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit'
+}).replace(/\//g, '.');
+---
+
+<BlogLayout 
+  title={post.data.title} 
+  description={post.data.description}
+  heroImage={post.data.heroImage}
+  pubDate={post.data.pubDate}
+>
+  <article class="blog-article-section">
+    <div class="container container-narrow">
+      
+      <!-- ===== BREADCRUMB ===== -->
+      <nav class="blog-breadcrumb">
+        <a href="/aichi">TOP (LP)</a> &gt; <a href="/blog">ブログ一覧</a> &gt; <span>{post.data.title}</span>
+      </nav>
+
+      <!-- ===== ARTICLE HEADER ===== -->
+      <header class="blog-article-header">
+        <div class="article-meta-top">
+          <span class="article-date">🕒 公開日: {formattedDate}</span>
+        </div>
+        <h1 class="article-title">{post.data.title}</h1>
+      </header>
+
+      <!-- ===== HERO IMAGE ===== -->
+      {post.data.heroImage && (
+        <div class="article-hero-image">
+          <img src={post.data.heroImage} alt={post.data.title} />
+        </div>
+      )}
+
+      <!-- ===== ARTICLE BODY ===== -->
+      <div class="blog-article-content">
+        <Content />
+      </div>
+
+    </div>
+  </article>
+
+  <!-- ===== CTA BOX FOR INDIVIDUAL POSTS ===== -->
+  <section class="blog-cta-section section-light">
+    <div class="container container-narrow">
+      <div class="inline-cta-box">
+        <div class="inline-cta-badge">飛び石修理は今すぐ応急処置を！</div>
+        <h3>ガラス交換を避けて「1.6万円」で直すチャンスです</h3>
+        <p>フロントガラスのヒビは、放置すると走行中の微細な振動や温度変化で一気に伸びてしまいます。伸びてからでは「ガラス全交換（10万〜20万円）」しか選択肢がありません。<br><br><strong>直径2cm以内の今なら、最短30分の出張リペア（生涯保証付き）で直せます。</strong>まずは状況をお聞かせください。写真をLINEで送っていただければ即座に無料見積もりいたします。</p>
+        
+        <div class="tokuten-box tokuten-light">
+          <div class="tokuten-label">📣 期間限定プレゼント</div>
+          <p class="tokuten-text">ご施工のお客様全員に <strong>車内 内窓 純水で拭き上げ</strong> を無料でプレゼント！</p>
+        </div>
+
+        <div class="cta-actions">
+          <a href="tel:07084280866" class="btn-primary">
+            <span class="btn-icon">📞</span>無料見積もり・相談する
+            <span class="btn-sub">24時間・年中無休受付</span>
+          </a>
+          <a href="https://lin.ee/Qvq5293" class="btn-line" target="_blank" rel="noopener">
+            <span class="btn-icon">💬</span>LINEで写真を送って見積もり
+          </a>
+        </div>
+      </div>
+      
+      <div class="article-footer-navigation">
+        <a href="/blog" class="btn-back-to-list">← ブログ一覧に戻る</a>
+      </div>
+    </div>
+  </section>
+</BlogLayout>
+
+<style>
+  .container-narrow {
+    max-width: 760px !important;
+  }
+  
+  .blog-article-section {
+    padding: 40px 0 60px;
+    background: #fff;
+  }
+  
+  .blog-breadcrumb {
+    font-size: 13px;
+    color: var(--gray);
+    margin-bottom: 24px;
+  }
+  .blog-breadcrumb a {
+    color: var(--blue);
+  }
+  .blog-breadcrumb a:hover {
+    text-decoration: underline;
+  }
+  
+  .blog-article-header {
+    margin-bottom: 24px;
+  }
+  .article-meta-top {
+    margin-bottom: 12px;
+  }
+  .article-date {
+    font-size: 13px;
+    color: var(--gray);
+    font-weight: 500;
+  }
+  .article-title {
+    font-size: clamp(22px, 4vw, 32px);
+    font-weight: 900;
+    line-height: 1.4;
+    color: var(--dark);
+  }
+  
+  .article-hero-image {
+    width: 100%;
+    margin-bottom: 40px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 3px solid #fff;
+  }
+  .article-hero-image img {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+  }
+  
+  /* Inline CTA Box */
+  .blog-cta-section {
+    padding: 60px 0;
+    border-top: 1px solid #E4ECF6;
+  }
+  
+  .inline-cta-box {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    padding: 40px 32px;
+    box-shadow: var(--shadow-lg);
+    border: 2px solid var(--blue-l);
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .inline-cta-badge {
+    display: inline-block;
+    background: var(--red);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 40px;
+    margin-bottom: 16px;
+  }
+  
+  .inline-cta-box h3 {
+    font-size: clamp(20px, 3vw, 24px);
+    font-weight: 900;
+    color: var(--blue-d);
+    margin-bottom: 16px;
+    line-height: 1.4;
+  }
+  
+  .inline-cta-box p {
+    font-size: 15px;
+    color: var(--dark);
+    line-height: 1.7;
+    margin-bottom: 24px;
+    text-align: left;
+  }
+  
+  .inline-cta-box .tokuten-box {
+    max-width: 500px;
+    margin: 0 auto 28px;
+    background: var(--green-l);
+    border-color: rgba(30, 142, 62, 0.2);
+    text-align: left;
+  }
+  .inline-cta-box .tokuten-label {
+    color: var(--green);
+  }
+  .inline-cta-box .tokuten-text {
+    color: var(--dark);
+  }
+  
+  .cta-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+  .cta-actions .btn-primary, .cta-actions .btn-line {
+    max-width: 440px;
+  }
+  
+  .article-footer-navigation {
+    text-align: center;
+    border-top: 1px solid #E2E8F0;
+    padding-top: 30px;
+  }
+  .btn-back-to-list {
+    display: inline-block;
+    color: var(--blue);
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .btn-back-to-list:hover {
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 600px) {
+    .inline-cta-box {
+      padding: 30px 20px;
+    }
+  }
+</style>

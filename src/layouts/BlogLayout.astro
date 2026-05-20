@@ -1,0 +1,223 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  heroImage?: string;
+  pubDate?: Date;
+}
+
+const { title, description, heroImage, pubDate } = Astro.props;
+
+const siteTitle = title ? `${title} | 三河・名古屋フロントガラスリペア専門店ブログ` : "三河・名古屋フロントガラスリペア専門店ブログ";
+const siteDescription = description || "愛知県三河エリア・名古屋市のフロントガラス飛び石・ヒビ修理専門店ブログ。応急処置や車検対策などの有益な情報を発信。";
+
+const formattedDate = pubDate 
+  ? new Date(pubDate).toLocaleDateString('ja-JP', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '.')
+  : '';
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{siteTitle}</title>
+  <meta name="description" content={siteDescription}>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="blog-header">
+    <div class="blog-header-inner">
+      <a href="/aichi" class="blog-logo">
+        <span class="blog-logo-area">三河・名古屋 出張専門</span>
+        <span class="blog-logo-service">フロントウインドウリペア</span>
+      </a>
+      <div class="blog-header-nav">
+        <a href="/aichi" class="nav-link">サービスLP</a>
+        <a href="/blog" class="nav-link">ブログ一覧</a>
+        <a href="tel:07084280866" class="nav-tel">📞 24時間相談OK</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== STICKY HEADER (LPスクリプト互換用) ===== -->
+  <header class="sticky-header" id="stickyHeader">
+    <div class="sticky-inner">
+      <a href="/aichi" class="sticky-logo">
+        <span class="sticky-area">三河・名古屋</span>
+        <span class="sticky-service">フロントウインドウリペア</span>
+      </a>
+      <a href="tel:07084280866" class="sticky-tel" id="stickyTel">
+        <span class="sticky-tel-icon">📞</span>
+        <span>24時間受付中</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <slot />
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" id="legal">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-info">
+          <h4>三河フロントウインドウリペア出張専門店</h4>
+          <p>愛知県三河エリア・名古屋市内 出張専門</p>
+          <p>📞 受付：24時間・年中無休 <a href="tel:07084280866" class="footer-tel-link">070-8428-0866</a></p>
+          <p>💬 LINE窓口：<a href="https://lin.ee/Qvq5293" target="_blank" rel="noopener" class="footer-line-link">公式LINEはこちら（24h無料見積り）</a></p>
+          <p>対応エリア：愛知県全域（一部出張費加算あり）</p>
+        </div>
+        <div class="footer-links">
+          <a href="/aichi">LPトップページ</a>
+          <a href="/aichi#price">料金案内</a>
+          <a href="/aichi#faq">よくある質問</a>
+          <a href="/blog">ブログ一覧</a>
+        </div>
+      </div>
+      <div class="footer-legal">
+        <p>© 2025 三河フロントウインドウリペア出張専門店 All Rights Reserved.</p>
+        <p class="legal-note">掲載の料金は税込価格です。ヒビの状態・大きさにより料金が変動する場合があります。施工前に必ずお見積もりをご提示します。リペアはヒビの「進行防止・目立たなくする」技術であり、完全消去を保証するものではありません。</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- STICKY CTA BAR (スマホ追従バー) -->
+  <div class="sticky-cta-bar" id="stickyCta">
+    <a href="tel:07084280866" class="sticky-cta-btn sticky-cta-tel" id="stickyCtaTel">
+      <span>📞</span>電話で相談
+    </a>
+    <a href="https://lin.ee/Qvq5293" class="sticky-cta-btn sticky-cta-line" id="stickyCtaLine" target="_blank" rel="noopener">
+      <span>💬</span>LINEで見積もり
+    </a>
+  </div>
+
+  <script is:inline src="/script.js"></script>
+</body>
+</html>
+
+<style is:global>
+  /* ブログ用の追加共通スタイル */
+  .blog-header {
+    background: var(--blue-d);
+    color: #fff;
+    padding: 16px 0;
+    border-bottom: 3px solid var(--red);
+  }
+  .blog-header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .blog-logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+  }
+  .blog-logo-area {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 500;
+  }
+  .blog-logo-service {
+    font-size: 18px;
+    color: #fff;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+  }
+  .blog-header-nav {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .nav-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+    transition: color 0.2s;
+  }
+  .nav-link:hover {
+    color: #fff;
+    text-decoration: underline;
+  }
+  .nav-tel {
+    background: var(--red);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 40px;
+    box-shadow: 0 3px 10px rgba(224, 32, 32, 0.3);
+  }
+  .nav-tel:hover {
+    background: var(--red-d);
+  }
+
+  .footer-tel-link {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: underline !important;
+  }
+  .footer-line-link {
+    color: #FFD54F;
+    font-weight: bold;
+    text-decoration: underline !important;
+  }
+
+  /* 記事詳細の文字装飾 */
+  .blog-article-content {
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--dark);
+  }
+  .blog-article-content p {
+    margin-bottom: 24px;
+  }
+  .blog-article-content h2 {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--blue-d);
+    border-left: 5px solid var(--blue);
+    padding-left: 12px;
+    margin: 40px 0 20px;
+    line-height: 1.4;
+  }
+  .blog-article-content h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--blue);
+    margin: 32px 0 16px;
+  }
+  .blog-article-content ol, .blog-article-content ul {
+    margin-bottom: 28px;
+    padding-left: 20px;
+  }
+  .blog-article-content li {
+    margin-bottom: 12px;
+  }
+  
+  @media (max-width: 600px) {
+    .blog-header-inner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .blog-header-nav {
+      width: 100%;
+      justify-content: space-between;
+      margin-top: 4px;
+    }
+  }
+</style>
