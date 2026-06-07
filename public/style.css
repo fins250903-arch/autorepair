@@ -1326,8 +1326,8 @@ section { padding: 64px 0; }
 .fv.fv-glass {
   min-height: 100svh;
   background:
-    linear-gradient(165deg, rgba(13,61,122,.92) 0%, rgba(13,61,122,.82) 40%, rgba(26,26,46,.78) 100%),
-    url('/images/fv_glass_bg.png') center 62% / cover no-repeat;
+    linear-gradient(180deg, rgba(13,61,122,.94) 0%, rgba(13,61,122,.78) 28%, rgba(26,26,46,.55) 55%, rgba(26,26,46,.72) 100%),
+    url('/images/fv_glass_bg.png') center center / cover no-repeat;
   padding:
     calc(56px + env(safe-area-inset-top, 0px) + 20px)
     16px
@@ -1488,8 +1488,8 @@ section { padding: 64px 0; }
       14px
       88px;
     background:
-      linear-gradient(180deg, rgba(13,61,122,.93) 0%, rgba(13,61,122,.85) 35%, rgba(26,26,46,.80) 100%),
-      url('/images/fv_glass_bg.png') center 68% / cover no-repeat;
+      linear-gradient(180deg, rgba(13,61,122,.95) 0%, rgba(13,61,122,.82) 32%, rgba(26,26,46,.50) 58%, rgba(26,26,46,.78) 100%),
+      url('/images/fv_glass_bg.png') center 42% / cover no-repeat;
   }
 
   .fv-keyword { font-size: 9px; padding: 3px 8px; }
@@ -1510,8 +1510,8 @@ section { padding: 64px 0; }
   .fv.fv-glass {
     padding: 100px 24px 88px;
     background:
-      linear-gradient(160deg, rgba(13,61,122,.82) 0%, rgba(13,61,122,.68) 55%, rgba(30,95,171,.52) 100%),
-      url('/images/fv_glass_bg.png') center 50% / cover no-repeat;
+      linear-gradient(180deg, rgba(13,61,122,.90) 0%, rgba(13,61,122,.72) 30%, rgba(26,26,46,.45) 60%, rgba(30,95,171,.55) 100%),
+      url('/images/fv_glass_bg.png') center 38% / cover no-repeat;
   }
 
   .fv.fv-glass .fv-headline {
