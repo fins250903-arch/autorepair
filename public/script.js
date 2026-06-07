@@ -17,8 +17,10 @@
     const fvBottom = fvSection.getBoundingClientRect().bottom;
     if (fvBottom < 60) {
       stickyHeader.classList.add('visible');
+      fvSection.classList.add('has-sticky-header');
     } else {
       stickyHeader.classList.remove('visible');
+      fvSection.classList.remove('has-sticky-header');
     }
   }
 

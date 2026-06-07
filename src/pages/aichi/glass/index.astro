@@ -1,0 +1,776 @@
+---
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const latestBlogPost = sortedPosts[0] ? {
+  title: sortedPosts[0].data.title,
+  url: `/blog/${sortedPosts[0].data.slug}`,
+  image: sortedPosts[0].data.heroImage || 'https://blog.autorepair.abura.site/wp-content/uploads/2026/04/%E3%83%95%E3%83%AD%E3%83%B3%E3%83%88%E3%82%AC%E3%83%A9%E3%82%B9-%E9%A3%9B%E3%81%B3%E7%9F%B3%E5%B0%8F-e1775465103644.jpg',
+  excerpt: sortedPosts[0].data.description,
+} : {
+  title: '最新ブログを読む',
+  url: '/blog',
+  image: 'https://blog.autorepair.abura.site/wp-content/uploads/2026/04/%E3%83%95%E3%83%AD%E3%83%B3%E3%83%88%E3%82%AC%E3%83%A9%E3%82%B9-%E9%A3%9B%E3%81%B3%E7%9F%B3%E5%B0%8F-e1775465103644.jpg',
+  excerpt: 'ガラス破損やリアガラス交換の判断ポイントを、最新記事でわかりやすく案内しています。',
+};
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>三河・名古屋 自動車ガラスリペア・ガラス修理 出張専門 | リアガラス交換対応</title>
+  <meta name="description" content="愛知県三河・名古屋の出張自動車ガラスリペア・ガラス修理専門店。リアガラス交換対応中。車上荒らし・全面割れ・リアゲート損傷も無料見積もり。車両保険を使わず適正価格で修理。ディーラーより安く、最短即日対応。">
+  <meta name="keywords" content="自動車 ガラス リペア,ガラス 修理,リアガラス交換,三河,名古屋,車上荒らし,出張,愛知県,岡崎,豊田,安城,刈谷,豊橋,車両保険">
+  <link rel="canonical" href="https://autorepair.abura.site/aichi/glass">
+
+  <meta property="og:title" content="三河・名古屋 自動車ガラスリペア・ガラス修理 | リアガラス交換対応">
+  <meta property="og:description" content="リアガラス交換対応中。保険を使わず適正価格で修理。お電話一本でご自宅・職場へ出張対応。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://autorepair.abura.site/aichi/glass">
+  <meta property="og:locale" content="ja_JP">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AutoRepair",
+    "name": "愛知の自動車ガラスリペア・ガラス修理出張専門店",
+    "image": "https://autorepair.abura.site/favicon.png",
+    "@id": "https://autorepair.abura.site/aichi/glass/",
+    "url": "https://autorepair.abura.site/aichi/glass/",
+    "telephone": "070-8428-0866",
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "Aichi",
+      "addressCountry": "JP"
+    },
+    "description": "愛知県全域に出張対応。自動車ガラスリペア・ガラス修理・リアガラス交換専門。保険不使用での自費修理もご相談ください。"
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <header class="sticky-header" id="stickyHeader">
+    <div class="sticky-inner">
+      <div class="sticky-logo">
+        <span class="sticky-area">三河・名古屋</span>
+        <span class="sticky-service">自動車ガラス修理</span>
+      </div>
+      <a href="tel:07084280866" class="sticky-tel" id="stickyTel">
+        <span class="sticky-tel-icon">📞</span>
+        <span>24時間受付中</span>
+      </a>
+    </div>
+  </header>
+
+  <nav class="lp-cross-links">
+    <span class="lp-cross-links-label">関連サービス</span>
+    <a href="/aichi/" class="lp-cross-link"><span class="lp-cross-link-icon">🔧</span>フロントガラスリペア</a>
+    <a href="/aichi/glass/" class="lp-cross-link is-current"><span class="lp-cross-link-icon">🪟</span>自動車ガラス修理</a>
+  </nav>
+
+  <!-- ===== STEP 1: FV ===== -->
+  <section class="fv fv-glass has-sticky-header" id="fv">
+    <div class="fv-overlay"></div>
+    <div class="fv-content">
+      <div class="fv-keywords">
+        <span class="fv-keyword">自動車 ガラス リペア</span>
+        <span class="fv-keyword">ガラス 修理</span>
+      </div>
+      <div class="fv-badge">リアガラス交換 <strong>対応中</strong></div>
+      <h1 class="fv-headline">
+        <span class="fv-area">三河・名古屋</span>
+        <span class="fv-main">自動車ガラス<br><em>リペア・修理</em>専門</span>
+      </h1>
+      <div class="fv-highlights">
+        <span class="fv-highlight-pill">リアガラス交換対応中</span>
+        <span class="fv-highlight-pill">保険を使わず修理</span>
+        <span class="fv-highlight-pill">適正価格</span>
+      </div>
+      <p class="fv-sub">車両保険を使いたくない方、<strong>安く修理</strong>したい方へ。<br>お電話一本で出張見積もり・最短<strong>即日施工</strong>。</p>
+
+      <div class="tokuten-box tokuten-fv" id="tokuten-fv">
+        <div class="tokuten-label">📣 期間限定プレゼント</div>
+        <p class="tokuten-text">ご施工のお客様全員に<br><strong>車内 内窓 純水で拭き上げ</strong>を無料でプレゼント！</p>
+      </div>
+
+      <div class="cta-group" id="cta-fv">
+        <a href="tel:07084280866" class="btn-primary" id="btn-tel-fv">
+          <span class="btn-icon">📞</span>＼愛知県全域、即日対応も相談OK！／<br>無料見積もり・お問い合わせはこちら
+          <span class="btn-sub">24時間・年中無休受付</span>
+        </a>
+        <a href="https://lin.ee/Qvq5293" class="btn-line" id="btn-line-fv" target="_blank" rel="noopener">
+          <span class="btn-icon">💬</span>LINEで写真を送って見積もり
+        </a>
+        <p class="cta-note">※ 見積もり・相談は完全無料。保険使用の可否も一緒にご相談いただけます。</p>
+      </div>
+    </div>
+    <div class="fv-scroll-hint">
+      <span>スクロールして詳しく見る</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ===== STEP 2: 共感・問題提起 ===== -->
+  <section class="empathy section-white" id="empathy">
+    <div class="container">
+      <div class="section-tag">こんなお悩み、ありませんか？</div>
+      <h2 class="section-title">「リアガラス交換10万円」<br>…本当にそれしか方法はないですか？</h2>
+      <p class="section-lead">リアガラス破損・リアゲート損傷で、多くの方が同じ不安を抱えています。</p>
+
+      <div class="pain-grid">
+        <div class="pain-card">
+          <div class="pain-icon">🚨</div>
+          <p>朝、車に乗ったら<strong>リアガラスが粉々</strong>。車上荒らし被害で、何から手をつければいいか分からない</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">💸</div>
+          <p>リアゲートまで傷つき、<strong>一式交換で20万円超</strong>の見積もり。ディーラーに「交換一択」と言われた</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">📋</div>
+          <p>車両保険を使うと<strong>等級が下がる</strong>。免責を差し引くと結局自己負担——保険は使いたくない</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">⏰</div>
+          <p>割れたまま<strong>雨の日を迎えたくない</strong>。在庫待ちで数日、通勤や送迎が止まってしまう</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">🔍</div>
+          <p>小さなヒビなら<strong>ガラス修理で済むのか</strong>、全面割れなら交換か——判断がつかず放置している</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">🏷️</div>
+          <p>熱線・アンテナ付きリアガラスで<strong>部品選びが難しい</strong>。安いガラスを選んでも機能が使えなくなるのでは…</p>
+        </div>
+      </div>
+
+      <div class="empathy-reveal">
+        <div class="reveal-arrow">↓</div>
+        <div class="reveal-box">
+          <p class="reveal-text">そのお困りごと、<strong>自動車ガラスリペア・ガラス修理</strong>の専門店なら解決の糸口があります。<br>ディーラーより<strong>適正価格</strong>で、最短<strong>即日</strong>の出張対応も可能です。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STEP 3: 解決策 ===== -->
+  <section class="solution section-light" id="solution">
+    <div class="container">
+      <div class="section-tag">解決策</div>
+      <h2 class="section-title">「高い交換じゃなく、<br>賢いガラス修理」という選択肢</h2>
+
+      <div class="comparison-table">
+        <div class="comp-header">
+          <div class="comp-col">項目</div>
+          <div class="comp-col comp-bad">ディーラー交換</div>
+          <div class="comp-col comp-good">当店（専門店）</div>
+        </div>
+        <div class="comp-row">
+          <div class="comp-col">リアガラス交換</div>
+          <div class="comp-col comp-bad">8万〜15万円</div>
+          <div class="comp-col comp-good"><strong>3万〜10万円</strong></div>
+        </div>
+        <div class="comp-row">
+          <div class="comp-col">時間</div>
+          <div class="comp-col comp-bad">お預かり数日</div>
+          <div class="comp-col comp-good"><strong>2〜3時間・出張可</strong></div>
+        </div>
+        <div class="comp-row">
+          <div class="comp-col">保険</div>
+          <div class="comp-col comp-bad">等級ダウンの不安</div>
+          <div class="comp-col comp-good"><strong>自費修理の損得比較</strong></div>
+        </div>
+        <div class="comp-row">
+          <div class="comp-col">部品</div>
+          <div class="comp-col comp-bad">純正品のみ</div>
+          <div class="comp-col comp-good"><strong>純正・国産優良から選択</strong></div>
+        </div>
+        <div class="comp-row">
+          <div class="comp-col">リアゲート</div>
+          <div class="comp-col comp-bad">一式交換を勧められる</div>
+          <div class="comp-col comp-good"><strong>損傷範囲に応じた最適提案</strong></div>
+        </div>
+      </div>
+
+      <p class="solution-note">※ 小ヒビは自動車ガラスリペア（直径3cm以内）で対応できる場合があります。全面割れ・粉々の場合はリアガラス交換をご案内します。無料診断でご確認ください。</p>
+
+      <div class="solution-img">
+        <img src="/images/solution_section.png" alt="自動車ガラス修理・リアガラス交換施工例">
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STEP 4: 選ばれる理由 ===== -->
+  <section class="reasons section-white" id="reasons">
+    <div class="container">
+      <div class="section-tag">選ばれる理由</div>
+      <h2 class="section-title">三河エリアで選ばれ続ける<br><span class="highlight-text">6つの理由</span></h2>
+
+      <div class="reason-list">
+        <div class="reason-item">
+          <div class="reason-num">01</div>
+          <div class="reason-body">
+            <h3><strong>リアガラス交換対応中</strong>の専門技術</h3>
+            <p>車上荒らし・全面割れ・熱線付きリアガラスまで、愛知の現場で培った施工ノウハウ。国産車・輸入車問わず、車種別に最適なガラスをご提案します。</p>
+          </div>
+        </div>
+        <div class="reason-item">
+          <div class="reason-num">02</div>
+          <div class="reason-body">
+            <h3>お電話一本、<strong>最短即日</strong>の出張対応</h3>
+            <p>「明日の通勤までに直したい」「雨が降る前に」——リアガラス交換の緊急ご相談にも即日対応。ご自宅・職場・コインパーキングへお伺いします。</p>
+          </div>
+        </div>
+        <div class="reason-item">
+          <div class="reason-num">03</div>
+          <div class="reason-body">
+            <h3><strong>保険を使わない</strong>修理も一緒にシミュレーション</h3>
+            <p>等級ダウン・免責金額を踏まえ、自費修理の方がトータルで得になるケースでは保険不使用をご提案。判断材料を分かりやすくお伝えします。</p>
+          </div>
+        </div>
+        <div class="reason-item">
+          <div class="reason-num">04</div>
+          <div class="reason-body">
+            <h3>ディーラー比<strong>最大50%OFF</strong>の適正価格</h3>
+            <p>中間マージンのない自社施工で、リアガラス交換・ガラス修理を適正価格に。安く修理したい方のために、複数の部品グレードからお選びいただけます。</p>
+          </div>
+        </div>
+        <div class="reason-item">
+          <div class="reason-num">05</div>
+          <div class="reason-body">
+            <h3>リペアか交換か、<strong>無料診断</strong>で判断</h3>
+            <p>自動車ガラスリペアで済む小ヒビから、リアガラス交換が必要な全面割れまで。写真一枚で事前診断、現車確認で最適なガラス修理方法をご案内します。</p>
+          </div>
+        </div>
+        <div class="reason-item">
+          <div class="reason-num">06</div>
+          <div class="reason-body">
+            <h3>リアゲート損傷も<strong>一体見積もり</strong></h3>
+            <p>ガラス単体で済むケースも、リアゲート板金・交換が必要なケースも。損傷範囲を確認し、必要最小限の修理でコストを抑えます。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STEP 5: ベネフィット ===== -->
+  <section class="benefit section-blue" id="benefit">
+    <div class="container">
+      <div class="section-tag light">ベネフィット</div>
+      <h2 class="section-title light">修理後、あなたの毎日がこう変わります</h2>
+      <p class="section-lead light">高い見積もりの不安から、安心して運転できる毎日へ。</p>
+
+      <div class="benefit-grid">
+        <div class="benefit-card">
+          <div class="benefit-emoji">💰</div>
+          <h3>15万円が数万円台に</h3>
+          <p>ディーラー見積もりの恐怖から解放。保険を使わず自費修理しても、等級ダウン後の保険料増よりトータルで得になるケースが多いです。</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-emoji">🛡️</div>
+          <h3>割れたままの夜がなくなる</h3>
+          <p>防犯の不安・雨天時の浸水リスクから解放。最短即日のリアガラス交換で、明日から安心して通勤・送迎できます。</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-emoji">✅</div>
+          <h3>部品選びの迷いがなくなる</h3>
+          <p>熱線・バックカメラ対応ガラスも車種別にご提案。交換後の動作確認まで行い、機能面も安心してお乗りいただけます。</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-emoji">🚙</div>
+          <h3>愛車が「また乗れる」状態に</h3>
+          <p>リアゲート一式交換を勧められて途方に暮れていた方も、損傷範囲に応じた修理で愛車を取り戻せます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA #2 ===== -->
+  <section class="cta-section section-accent" id="cta-mid">
+    <div class="container">
+      <div class="tokuten-box tokuten-light">
+        <div class="tokuten-label">📣 期間限定プレゼント</div>
+        <p class="tokuten-text">ご施工のお客様全員に<br><strong>車内 内窓 純水で拭き上げ</strong>を無料でプレゼント！</p>
+      </div>
+
+      <div class="cta-group">
+        <a href="tel:07084280866" class="btn-primary" id="btn-tel-mid">
+          <span class="btn-icon">📞</span>今すぐ無料電話相談する
+          <span class="btn-sub">24時間・年中無休受付</span>
+        </a>
+        <a href="https://lin.ee/Qvq5293" class="btn-line" id="btn-line-mid" target="_blank" rel="noopener">
+          <span class="btn-icon">💬</span>LINEで写真を送って見積もり
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STEP 6: お客様の声 ===== -->
+  <section class="voice section-white" id="voice">
+    <div class="container">
+      <div class="section-tag">お客様の声</div>
+      <h2 class="section-title">三河・愛知のお客様から<br>喜びの声が届いています</h2>
+      <p class="voice-lead">すべて実際のご依頼者様からいただいたアンケートより抜粋しています</p>
+
+      <div class="voice-grid">
+        <div class="voice-card">
+          <div class="voice-star">★★★★★</div>
+          <p class="voice-text">「車上荒らしでリアガラスが割れ、ディーラーでは12万円と言われました。保険は使いたくなくこちらに相談。7万円台で交換でき、等級も下がらず助かりました。」</p>
+          <div class="voice-meta">
+            <span class="voice-name">名古屋市北区・40代・会社員</span>
+            <span class="voice-car">ノア</span>
+          </div>
+        </div>
+        <div class="voice-card">
+          <div class="voice-star">★★★★★</div>
+          <p class="voice-text">「リアゲートまでへこんでいて一式20万円超の見積もり。損傷範囲を丁寧に見てもらい、ガラス交換と板金の組み合わせで半額以下に。説明が分かりやすかったです。」</p>
+          <div class="voice-meta">
+            <span class="voice-name">岡崎市・50代・自営業</span>
+            <span class="voice-car">ヴォクシー</span>
+          </div>
+        </div>
+        <div class="voice-card">
+          <div class="voice-star">★★★★★</div>
+          <p class="voice-text">「割れたまま2日過ごすのが不安で当日電話。夕方には自宅でリアガラス交換が完了。破片の片付けまでお願いできて、本当に助かりました。」</p>
+          <div class="voice-meta">
+            <span class="voice-name">豊田市・30代・女性</span>
+            <span class="voice-car">アクア</span>
+          </div>
+        </div>
+        <div class="voice-card">
+          <div class="voice-star">★★★★★</div>
+          <p class="voice-text">「熱線付きリアガラスで部品が高いと聞いていましたが、国産優良品を提案してもらい予算内で収まりました。バックカメラの動作確認までしてくれて安心でした。」</p>
+          <div class="voice-meta">
+            <span class="voice-name">刈谷市・40代・男性</span>
+            <span class="voice-car">ハリアー</span>
+          </div>
+        </div>
+        <div class="voice-card">
+          <div class="voice-star">★★★★★</div>
+          <p class="voice-text">「小さなヒビだったので自動車ガラスリペアで対応してもらえました。交換だと思っていたので、安く修理できて嬉しかったです。仕上がりも目立ちません。」</p>
+          <div class="voice-meta">
+            <span class="voice-name">安城市・30代・会社員</span>
+            <span class="voice-car">フィット</span>
+          </div>
+        </div>
+        <div class="voice-card">
+          <div class="voice-star">★★★★★</div>
+          <p class="voice-text">「複数店の見積もり比較が面倒でしたが、こちらは電話とLINE写真だけで概算が出て助かりました。職場の駐車場で作業してもらい、仕事を止めずに済みました。」</p>
+          <div class="voice-meta">
+            <span class="voice-name">名古屋市天白区・40代・会社員</span>
+            <span class="voice-car">セレナ</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blog-highlight section-light" id="blog">
+    <div class="container">
+      <div class="section-tag">最新ブログ</div>
+      <h2 class="section-title">ガラス破損の最新情報も<br>画像付きで確認できます</h2>
+      <p class="section-lead">リアガラス交換の判断や応急処置のポイントを、最新記事からすぐ確認できます。</p>
+
+      <a href={latestBlogPost.url} class="blog-card" target="_blank" rel="noopener noreferrer">
+        <div class="blog-card-image">
+          <img src={latestBlogPost.image} alt={latestBlogPost.title} loading="lazy">
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-label">最新記事を読む</span>
+          <h3>{latestBlogPost.title}</h3>
+          <p>{latestBlogPost.excerpt}</p>
+          <span class="blog-card-link">ブログへ移動する</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== STEP 7: ターゲット ===== -->
+  <section class="target section-light" id="target">
+    <div class="container">
+      <div class="section-tag">あなたへ</div>
+      <h2 class="section-title">こんな方は<br>今すぐご相談ください</h2>
+
+      <div class="target-list">
+        <div class="target-item">
+          <div class="target-check">✅</div>
+          <p>リアガラスが割れ、<strong>車上荒らし被害</strong>で何から始めればいいか分からない方</p>
+        </div>
+        <div class="target-item">
+          <div class="target-check">✅</div>
+          <p><strong>車両保険を使いたくない</strong>、等級ダウンが怖い方</p>
+        </div>
+        <div class="target-item">
+          <div class="target-check">✅</div>
+          <p>ディーラー見積もりが高く、<strong>安く修理</strong>したい方</p>
+        </div>
+        <div class="target-item">
+          <div class="target-check">✅</div>
+          <p>リアゲートまで損傷し、<strong>一式交換の見積もり</strong>に驚いた方</p>
+        </div>
+        <div class="target-item">
+          <div class="target-check">✅</div>
+          <p>割れたまま<strong>雨の日・防犯面</strong>が不安で、すぐ直したい方</p>
+        </div>
+        <div class="target-item">
+          <div class="target-check">✅</div>
+          <p>熱線・カメラ付きリアガラスで<strong>部品選びに迷っている</strong>方</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STEP 8: 施工詳細 ===== -->
+  <section class="details section-white" id="details">
+    <div class="container">
+      <div class="section-tag">施工の流れ</div>
+      <h2 class="section-title">お電話から施工完了まで<br><strong>最短2〜3時間</strong>、4ステップ</h2>
+
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-num">STEP 1</div>
+          <div class="flow-icon">📞</div>
+          <h3>無料相談・予約</h3>
+          <p>お電話またはLINEで状況をお聞かせください。割れ方の写真を送っていただければ、リアガラス交換かガラス修理かを事前に無料診断します。</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-num">STEP 2</div>
+          <div class="flow-icon">🚗</div>
+          <h3>ご指定場所へ出張</h3>
+          <p>ご自宅・職場・コインパーキングなどへ伺います。リアガラス交換は屋内作業スペースがあるとスムーズです。出張費はお見積もり時にご案内します。</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-num">STEP 3</div>
+          <div class="flow-icon">🔧</div>
+          <h3>ガラス修理・交換施工</h3>
+          <p>自動車ガラスリペアまたはリアガラス交換を施工。作業時間はおおむね2〜3時間。熱線・カメラの動作確認まで行います。</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-num">STEP 4</div>
+          <div class="flow-icon">✅</div>
+          <h3>確認・お支払い</h3>
+          <p>仕上がりをご確認いただき完了。施工後すぐに運転できます。現金・クレジットカード・PayPayに対応。</p>
+        </div>
+      </div>
+
+      <div class="details-note">
+        <h3>対応エリア詳細</h3>
+        <div class="area-grid">
+          <div class="area-block">
+            <h4>🔵 三河エリア（主要対応）</h4>
+            <p>岡崎市 / 豊田市 / 安城市 / 刈谷市 / 豊橋市 / 豊川市 / 蒲郡市 / 西尾市 / 碧南市 / 知立市 / 高浜市 / みよし市 / 幸田町 / 新城市</p>
+          </div>
+          <div class="area-block">
+            <h4>🔵 名古屋・尾張エリア</h4>
+            <p>名古屋市（全区）/ 一宮市 / 春日井市 / 小牧市 / 瀬戸市 / 豊明市 / 日進市 / 長久手市 / 東郷町</p>
+          </div>
+        </div>
+        <p class="area-note">⚠️ 上記以外のエリアもお気軽にご相談ください。出張費が別途かかる場合がございます。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STEP 9: プロフィール ===== -->
+  <section class="profile section-light" id="profile">
+    <div class="container">
+      <div class="section-tag">代表</div>
+      <h2 class="section-title">「高い見積もりで<br>踏み切れない」その悔しさから</h2>
+
+      <div class="profile-inner">
+        <div class="profile-img-wrap">
+          <div class="profile-img">
+            <img src="/images/profile.png" alt="代表">
+          </div>
+        </div>
+        <div class="profile-text">
+          <div class="profile-quote">
+            <p>「リアガラスが割れた朝、ディーラーに電話したら12万円。保険を使えば等級が下がる。結局、直すにも直さないにも困る——そんな声を毎日聞いてきました。」</p>
+          </div>
+          <p>自動車ガラスリペア・ガラス修理の技術を磨き、<strong>三河エリアで1,000台以上</strong>の施工実績を積み上げてきました。リアガラス交換対応を強化し、保険を使わず適正価格で修理したい方の味方であり続けます。</p>
+          <p>「安く直したい」は当然の気持ちです。まず無料でお見積もりください。</p>
+          <div class="profile-credentials">
+            <span class="cred-item">🏅 三河エリア施工実績1,000台超</span>
+            <span class="cred-item">🪟 リアガラス交換対応中</span>
+            <span class="cred-item">📋 保険不使用シミュレーション対応</span>
+            <span class="cred-item">🔧 国産車・輸入車全車種対応</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-thought section-white" id="area">
+    <div class="container">
+      <div class="section-tag">対応エリア</div>
+      <h2 class="section-title">愛知県全域、最短即日<br>あなたの街へ伺います</h2>
+      <p class="section-lead">名古屋市内16区はもちろん、尾張から三河まで、愛知県内すべての市町村へ出張対応！</p>
+
+      <div class="area-detail-grid">
+        <div class="area-detail-card">
+          <h3>📍 名古屋市内（16区）</h3>
+          <p>千種区、東区、北区、西区、中村区、中区、昭和区、瑞穂区、熱田区、中川区、港区、南区、守山区、緑区、名東区、天白区</p>
+        </div>
+        <div class="area-detail-card">
+          <h3>📍 尾張エリア</h3>
+          <p>一宮市、瀬戸市、春日井市、犬山市、江南市、小牧市、稲沢市、尾張旭市、岩倉市、豊明市、日進市、清須市、北名古屋市、長久手市、東郷町、豊山町、大口町、扶桑町</p>
+        </div>
+        <div class="area-detail-card">
+          <h3>📍 海部・知多エリア</h3>
+          <p>津島市、愛西市、弥富市、あま市、大治町、蟹江町、飛島村 / 半田市、常滑市、東海市、大府市、知多市、阿久比町、東浦町、南知多町、美浜町、武豊町</p>
+        </div>
+        <div class="area-detail-card">
+          <h3>📍 三河エリア</h3>
+          <p>岡崎市、碧南市、刈谷市、豊田市、安城市、西尾市、知立市、高浜市、みよし市、幸田町 / 豊橋市、豊川市、蒲郡市、新城市、田原市、設楽町、東栄町、豊根村</p>
+        </div>
+      </div>
+
+      <div class="seo-text">
+        <p>愛知県内の<strong>自動車ガラスリペア</strong>・<strong>ガラス修理</strong>・<strong>リアガラス交換</strong>は、出張専門のプロにお任せください。車両保険を使いたくない方、安く修理したい方も、まずは無料見積もりをご利用ください。フロントガラスの飛び石リペアは<a href="/aichi/">こちらの専門ページ</a>をご覧ください。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="price section-white" id="price">
+    <div class="container">
+      <div class="section-tag">料金案内</div>
+      <h2 class="section-title">シンプルで<br>分かりやすい料金体系</h2>
+      <p class="price-lead">表示価格は<strong>税込</strong>。隠れた追加費用は一切ありません。</p>
+
+      <div class="price-cards">
+        <div class="price-card price-main">
+          <div class="price-card-header">
+            <h3>リアガラス交換</h3>
+            <p>（全面割れ・車上荒らし被害等）</p>
+          </div>
+          <div class="price-amount">
+            <span class="price-from">出張費別</span>
+            <span class="price-num">30,000<span class="price-yen">円〜</span></span>
+            <span class="price-tax">（税込）</span>
+          </div>
+          <ul class="price-includes">
+            <li>✅ 純正・国産優良ガラスから選択</li>
+            <li>✅ 熱線・カメラ対応品もご相談可</li>
+            <li>✅ 無料見積もり・事前診断</li>
+            <li>✅ 保険不使用シミュレーション</li>
+          </ul>
+          <p class="price-note-sm">※ 車種・熱線・アンテナの有無により料金が変わります。まず無料見積もりをご利用ください。</p>
+        </div>
+      </div>
+
+      <div class="price-compare">
+        <h3>💡 ディーラー交換との費用比較</h3>
+        <div class="compare-bar-wrap">
+          <div class="compare-bar-label">ディーラー交換</div>
+          <div class="compare-bar bad-bar"><span>80,000円〜150,000円</span></div>
+        </div>
+        <div class="compare-bar-wrap">
+          <div class="compare-bar-label">当店（専門店）</div>
+          <div class="compare-bar good-bar"><span>30,000円〜100,000円</span></div>
+        </div>
+        <p class="compare-note">自動車ガラスリペア（小ヒビ）ならさらに低コストで対応できる場合があります。まずは無料診断でご確認ください。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="tokuten-section section-accent2" id="tokuten">
+    <div class="container">
+      <div class="section-tag">期間限定特典</div>
+      <h2 class="section-title light">今だけのお得なプレゼント</h2>
+
+      <div class="tokuten-main-box">
+        <div class="tokuten-ribbon">期間限定</div>
+        <div class="tokuten-content">
+          <div class="tokuten-gift-icon">🎁</div>
+          <h3>車内 内窓 純水で拭き上げ</h3>
+          <div class="tokuten-price">
+            <span class="tokuten-free">無料プレゼント</span>
+          </div>
+          <p>車内の内窓を純水で丁寧に拭き上げ、油膜やくもりの原因になる汚れをすっきり整えます。施工いただいた全てのお客様にプレゼントしています。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA #3 ===== -->
+  <section class="cta-section section-cta-final" id="cta-final">
+    <div class="container">
+      <div class="tokuten-box tokuten-light">
+        <div class="tokuten-label">📣 期間限定プレゼント</div>
+        <p class="tokuten-text">ご施工のお客様全員に<br><strong>車内 内窓 純水で拭き上げ</strong>を無料でプレゼント！</p>
+      </div>
+
+      <h2 class="cta-final-title">今すぐ無料でご相談ください</h2>
+      <p class="cta-final-sub">24時間受付・年中無休. 電話orLINEですぐに対応します。</p>
+
+      <div class="cta-group">
+        <a href="tel:07084280866" class="btn-primary btn-large" id="btn-tel-final">
+          <span class="btn-icon">📞</span>今すぐ無料電話相談する
+          <span class="btn-sub">24時間・年中無休受付</span>
+        </a>
+        <a href="https://lin.ee/Qvq5293" class="btn-line btn-large" id="btn-line-final" target="_blank" rel="noopener">
+          <span class="btn-icon">💬</span>LINEで写真を送って見積もり
+        </a>
+        <p class="cta-note">※ 見積もり・相談は完全無料です。しつこい営業は一切しません。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq section-white" id="faq">
+    <div class="container">
+      <div class="section-tag">よくある質問</div>
+      <h2 class="section-title">ご不安を<br>解消します</h2>
+
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Q. リアガラスは「修理（リペア）」で済みますか？</summary>
+          <div class="faq-answer">
+            <p>ごく小さなヒビ・チップ（目安：直径3cm以内）で、ガラス内側が無傷の場合は自動車ガラスリペアで対応できることがあります。全面割れ・粉々・大きな欠けがある場合はリアガラス交換が必要です。写真または現車確認で無料診断いたします。</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>Q. リアガラス交換の費用相場はいくらですか？</summary>
+          <div class="faq-answer">
+            <p>愛知・名古屋エリアの相場は、専門店でおおむね3万円〜10万円（車種・熱線・アンテナの有無により変動）。ディーラーは8万円前後になることも多く、専門店の方が大幅にお得になるケースが一般的です。</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>Q. 車両保険は使えますか？使わない方が得な場合は？</summary>
+          <div class="faq-answer">
+            <p>車両保険の対象になる場合があります（いたずら・車上荒らし等）。ただし等級1段ダウン・免責金額の自己負担があり、修理費が5〜10万円程度の場合は自費の方がトータルで得になることも多いです。保険使用の可否は無料でご相談ください。</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>Q. リアゲート（バックドア）も一緒に傷ついています。ガラスだけ交換できますか？</summary>
+          <div class="faq-answer">
+            <p>リアガラス単体の交換で済むケースもあれば、リアゲートの板金・交換が必要なケースもあります。損傷範囲を確認のうえ、ガラス交換のみ／ゲート修理との最適な組み合わせをご提案します。</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>Q. リアガラス交換にかかる時間は？</summary>
+          <div class="faq-answer">
+            <p>在庫がある場合、作業時間はおおむね2〜3時間。取り寄せが必要な車種は1〜3日程度かかる場合があります。お急ぎの場合はお電話時にお伝えください。</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>Q. 車上荒らし被害の場合、何をすればいいですか？</summary>
+          <div class="faq-answer">
+            <p>まず警察への被害届（盗難・器物損壊）を。ガラス破片は触れず、専門店にご連絡ください。届出番号があると保険手続きがスムーズです。保険を使わない場合も、自費での迅速対応が可能です。</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>Q. 支払い方法は何が使えますか？</summary>
+          <div class="faq-answer">
+            <p>現金・クレジットカード（VISA/Mastercard/JCB/AMEX等）・PayPayに対応しています。施工後のお支払いで構いません。</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>Q. 三河エリア以外でも対応できますか？</summary>
+          <div class="faq-answer">
+            <p>名古屋市内や尾張エリアも対応しています。それ以外のエリアについてもお気軽にご相談ください。距離によって出張費が別途かかる場合がございます。</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="message section-light" id="message">
+    <div class="container">
+      <div class="section-tag">ご来店オーナーへ</div>
+      <h2 class="section-title">「一日でも早く、<br>安心して運転してほしい」</h2>
+
+      <div class="message-inner">
+        <p>リアガラスが割れると、防犯の不安、雨天時の浸水、通勤や送迎への影響——日常生活そのものが止まりそうになります。</p>
+        <p>でも正直に言います。<strong>適切なガラス修理・交換なら、ほとんどの場合、数日以内に解決できます。</strong></p>
+        <p>車両保険を使いたくない、安く修理したい——その気持ちは当然です。等級ダウンと免責を踏まえた上で、自費修理の方が得になるケースは少なくありません。</p>
+        <p>高い・安い、リペアか交換か、迷う必要はありません。まず写真を一枚送ってください。無料で診断します。その上で、最善の方法をご提案させていただきます。</p>
+        <p class="message-sign">三河 自動車ガラスリペア・ガラス修理出張専門店<br><strong>代表</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-thought section-white" id="area-final">
+    <div class="container">
+      <div class="section-tag">対応エリア</div>
+      <h2 class="section-title">愛知県全域<br>駆けつけます</h2>
+
+      <div class="area-detail-grid">
+        <div class="area-detail-card">
+          <h3>📍 西三河エリア（メイン対応）</h3>
+          <p>岡崎市・豊田市・安城市・刈谷市・碧南市・知立市・高浜市・西尾市・みよし市・幸田町・蒲郡市</p>
+          <p class="area-feature">リアガラス交換・即日対応実績多数</p>
+        </div>
+        <div class="area-detail-card">
+          <h3>📍 東三河エリア</h3>
+          <p>豊橋市・豊川市・蒲郡市・新城市・田原市・設楽町・東栄町・豊根村</p>
+          <p class="area-feature">豊橋・豊川は当日対応実績多数</p>
+        </div>
+        <div class="area-detail-card">
+          <h3>📍 名古屋市内</h3>
+          <p>名古屋市（千種区・東区・北区・西区・中村区・中区・昭和区・瑞穂区・熱田区・中川区・港区・南区・守山区・緑区・名東区・天白区）</p>
+          <p class="area-feature">車上荒らし被害の出張対応実績多数</p>
+        </div>
+        <div class="area-detail-card">
+          <h3>📍 尾張エリア</h3>
+          <p>一宮市・春日井市・小牧市・瀬戸市・尾張旭市・豊明市・日進市・長久手市・東郷町・大府市・東海市</p>
+          <p class="area-feature">ご相談いただければ対応エリア確認可</p>
+        </div>
+      </div>
+
+      <div class="seo-text">
+        <p>愛知県内の<strong>自動車ガラスリペア</strong>・<strong>ガラス修理</strong>・<strong>リアガラス交換</strong>は、出張専門のプロにお任せください。三河エリア（岡崎・豊田・安城・刈谷）・名古屋市内・豊橋市・一宮市など愛知県全域に対応。車両保険を使いたくない方、安く修理したい方も、まずは無料見積もりをご利用ください。</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" id="legal">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-info">
+          <h4>三河 自動車ガラスリペア・ガラス修理出張専門店</h4>
+          <p>愛知県三河エリア・名古屋市内 出張専門</p>
+          <p>📞 受付：24時間・年中無休</p>
+          <p>対応エリア：愛知県全域（一部出張費加算あり）</p>
+        </div>
+        <div class="footer-links">
+          <a href="#fv">トップへ戻る</a>
+          <a href="/aichi/">フロントガラスリペア</a>
+          <a href="#price">料金案内</a>
+          <a href="#faq">よくある質問</a>
+          <a href={latestBlogPost.url}>最新ブログ</a>
+          <a href="/blog">ブログ一覧</a>
+          <a href="#cta-final">お問い合わせ</a>
+        </div>
+      </div>
+      <div class="footer-legal">
+        <p>© 2025 三河 自動車ガラスリペア・ガラス修理出張専門店 All Rights Reserved.</p>
+        <p class="legal-note">掲載の料金は税込価格です。損傷の状態・車種により料金が変動する場合があります。施工前に必ずお見積もりをご提示します。</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="sticky-cta-bar" id="stickyCta">
+    <a href="tel:07084280866" class="sticky-cta-btn sticky-cta-tel" id="stickyCtaTel">
+      <span>📞</span>電話で相談
+    </a>
+    <a href="https://lin.ee/Qvq5293" class="sticky-cta-btn sticky-cta-line" id="stickyCtaLine" target="_blank" rel="noopener">
+      <span>💬</span>LINEで見積もり
+    </a>
+  </div>
+
+  <script is:inline src="/script.js"></script>
+</body>
+</html>

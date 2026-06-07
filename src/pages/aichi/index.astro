@@ -120,6 +120,12 @@ const latestBlogPost = sortedPosts[0] ? {
     </div>
   </header>
 
+  <nav class="lp-cross-links">
+    <span class="lp-cross-links-label">関連サービス</span>
+    <a href="/aichi/" class="lp-cross-link is-current"><span class="lp-cross-link-icon">🔧</span>フロントガラスリペア</a>
+    <a href="/aichi/glass/" class="lp-cross-link"><span class="lp-cross-link-icon">🪟</span>自動車ガラス修理</a>
+  </nav>
+
   <!-- ===== STEP 1: FV ===== -->
   <section class="fv" id="fv">
     <div class="fv-overlay"></div>
@@ -541,7 +547,20 @@ const latestBlogPost = sortedPosts[0] ? {
           <div class="profile-quote">
             <p>「ディーラーに電話したら『予約は来週、お預かりで5日かかります』と言われた。三河の道を毎日走っているのに、5日も車なしで過ごせるはずがない。その怒りと悔しさがすべての始まりです。」</p>
           </div>
-          <p>フロントウインドウリ�  <section class="final-thought section-white" id="area">
+          <p>フロントウインドウリペアと出会い、技術を学んでから<strong>三河エリアで1,000台以上</strong>の実績を積み上げてきました。一件一件、お客様の大切な愛車と向き合い続けてきたからこそ、輸入車・国産車問わず対応できる引き出しを持っています。</p>
+          <p>「今日直したい」という方の気持ちに、今日も全力でお応えします。リアガラス交換・ガラス修理は<a href="/aichi/glass/">専門ページ</a>をご覧ください。</p>
+          <div class="profile-credentials">
+            <span class="cred-item">🏅 三河エリア施工実績1,000台超</span>
+            <span class="cred-item">🔧 国産車・輸入車全車種対応</span>
+            <span class="cred-item">📱 アイサイト搭載車対応実績多数</span>
+            <span class="cred-item">🛡️ 生涯再リペア無料保証</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-thought section-white" id="area">
     <div class="container">
       <div class="section-tag">対応エリア</div>
       <h2 class="section-title">愛知県全域、最短当日<br>あなたの街へ伺います</h2>
@@ -571,7 +590,15 @@ const latestBlogPost = sortedPosts[0] ? {
       </div>
     </div>
   </section>
-"price-card price-main">
+
+  <section class="price section-white" id="price">
+    <div class="container">
+      <div class="section-tag">料金案内</div>
+      <h2 class="section-title">シンプルで<br>分かりやすい料金体系</h2>
+      <p class="price-lead">出張費込みの<strong>表示価格のみ</strong>。隠れた追加費用は一切ありません。</p>
+
+      <div class="price-cards">
+        <div class="price-card price-main">
           <div class="price-card-header">
             <h3>フロントウインドウリペア</h3>
             <p>（飛び石傷・ヒビ割れ修理）</p>
@@ -773,6 +800,7 @@ const latestBlogPost = sortedPosts[0] ? {
         </div>
         <div class="footer-links">
           <a href="#fv">トップへ戻る</a>
+          <a href="/aichi/glass/">自動車ガラス修理</a>
           <a href="#price">料金案内</a>
           <a href="#faq">よくある質問</a>
           <a href={latestBlogPost.url}>最新ブログ</a>
