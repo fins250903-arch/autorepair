@@ -1,19 +1,36 @@
 ---
+import { SITE_URL, STORE_NAME } from '../lib/site';
+
 interface Props {
   title: string;
   description?: string;
   heroImage?: string;
   pubDate?: Date;
+  canonical?: string;
+  noindex?: boolean;
+  ogType?: 'article' | 'website';
+  ogImage?: string;
+  keywords?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-const { title, description, heroImage, pubDate } = Astro.props;
+const {
+  title,
+  description,
+  canonical,
+  noindex = false,
+  ogType = 'article',
+  ogImage,
+  keywords,
+  jsonLd,
+} = Astro.props;
 
-const siteTitle = title ? `${title} | 三河・名古屋フロントガラスリペア専門店ブログ` : "三河・名古屋フロントガラスリペア専門店ブログ";
-const siteDescription = description || "愛知県三河エリア・名古屋市のフロントガラス飛び石・ヒビ修理専門店ブログ。応急処置や車検対策などの有益な情報を発信。";
-
-const formattedDate = pubDate 
-  ? new Date(pubDate).toLocaleDateString('ja-JP', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '.')
-  : '';
+const siteTitle = title ? `${title} | ${STORE_NAME}ブログ` : `${STORE_NAME}ブログ`;
+const siteDescription = description || '愛知県三河エリア・名古屋市のフロントガラス飛び石・ヒビ修理専門店ブログ。応急処置や車検対策などの有益な情報を発信。';
+const canonicalHref = canonical || new URL(Astro.url.pathname, SITE_URL).href;
+const ogImageAbs = ogImage
+  ? (ogImage.startsWith('http') ? ogImage : new URL(ogImage, SITE_URL).href)
+  : undefined;
 ---
 
 <!DOCTYPE html>
@@ -23,6 +40,20 @@ const formattedDate = pubDate
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{siteTitle}</title>
   <meta name="description" content={siteDescription}>
+  {keywords && <meta name="keywords" content={keywords}>}
+  {noindex && <meta name="robots" content="noindex, nofollow">}
+  <link rel="canonical" href={canonicalHref}>
+  <meta property="og:type" content={ogType}>
+  <meta property="og:title" content={siteTitle}>
+  <meta property="og:description" content={siteDescription}>
+  <meta property="og:url" content={canonicalHref}>
+  <meta property="og:site_name" content={STORE_NAME}>
+  {ogImageAbs && <meta property="og:image" content={ogImageAbs}>}
+  <meta name="twitter:card" content={ogImageAbs ? 'summary_large_image' : 'summary'}>
+  <meta name="twitter:title" content={siteTitle}>
+  <meta name="twitter:description" content={siteDescription}>
+  {ogImageAbs && <meta name="twitter:image" content={ogImageAbs}>}
+  {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Oswald:wght@600;700&display=swap" rel="stylesheet">

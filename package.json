@@ -6,8 +6,11 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
+    "sync:blog-admin-index": "node ./scripts/generate-blog-admin-index.mjs",
+    "sync:blog-images": "node ./scripts/sync-blog-images.mjs",
+    "sync:blog": "npm run sync:blog-images && npm run sync:blog-admin-index",
+    "dev": "npm run sync:blog && astro dev",
+    "build": "npm run sync:blog && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },

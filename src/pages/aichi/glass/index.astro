@@ -1,18 +1,21 @@
 ---
 import { getCollection } from 'astro:content';
+import { getPostUrl, isPublishedPost, sortPostsByNewest } from '../../../lib/blogListing';
+import { resolveBlogMeta, resolvePostImage } from '../../../lib/blogSeo';
 
-const posts = await getCollection('blog');
-const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const posts = sortPostsByNewest((await getCollection('blog')).filter(isPublishedPost));
+const latest = posts[0];
+const fallbackImage = 'https://blog.autorepair.abura.site/wp-content/uploads/2026/04/%E3%83%95%E3%83%AD%E3%83%B3%E3%83%88%E3%82%AC%E3%83%A9%E3%82%B9-%E9%A3%9B%E3%81%B3%E7%9F%B3%E5%B0%8F-e1775465103644.jpg';
 
-const latestBlogPost = sortedPosts[0] ? {
-  title: sortedPosts[0].data.title,
-  url: `/blog/${sortedPosts[0].data.slug}`,
-  image: sortedPosts[0].data.heroImage || 'https://blog.autorepair.abura.site/wp-content/uploads/2026/04/%E3%83%95%E3%83%AD%E3%83%B3%E3%83%88%E3%82%AC%E3%83%A9%E3%82%B9-%E9%A3%9B%E3%81%B3%E7%9F%B3%E5%B0%8F-e1775465103644.jpg',
-  excerpt: sortedPosts[0].data.description,
+const latestBlogPost = latest ? {
+  title: latest.data.title,
+  url: getPostUrl(latest),
+  image: resolvePostImage(latest.data.coverImage, latest.id.replace(/\/index$/, '')) || fallbackImage,
+  excerpt: resolveBlogMeta(latest).description,
 } : {
   title: '最新ブログを読む',
   url: '/blog',
-  image: 'https://blog.autorepair.abura.site/wp-content/uploads/2026/04/%E3%83%95%E3%83%AD%E3%83%B3%E3%83%88%E3%82%AC%E3%83%A9%E3%82%B9-%E9%A3%9B%E3%81%B3%E7%9F%B3%E5%B0%8F-e1775465103644.jpg',
+  image: fallbackImage,
   excerpt: 'ガラス破損やリアガラス交換の判断ポイントを、最新記事でわかりやすく案内しています。',
 };
 ---
