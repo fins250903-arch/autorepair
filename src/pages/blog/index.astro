@@ -1,13 +1,48 @@
 ---
 import { getCollection } from 'astro:content';
 import BlogLayout from '../../layouts/BlogLayout.astro';
+import {
+  type BlogPost,
+  buildAreaBlogGroups,
+  getOtherBlogPosts,
+  getPostUrl,
+  isPublishedPost,
+  sortPostsByNewest,
+} from '../../lib/blogListing';
+import { canonicalUrl } from '../../lib/site';
+import { resolveBlogMeta, resolvePostImage } from '../../lib/blogSeo';
 
-// Get all published posts and sort by date descending
-const posts = await getCollection('blog');
-const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const allPosts = sortPostsByNewest(
+  (await getCollection('blog')).filter(isPublishedPost),
+);
+const areaGroups = buildAreaBlogGroups(allPosts);
+const otherPosts = getOtherBlogPosts(allPosts);
+
+function cardData(post: BlogPost) {
+  const slug = post.id.replace(/\/index$/, '');
+  const formattedDate = new Date(post.data.date).toLocaleDateString('ja-JP', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).replace(/\//g, '.');
+  const { description } = resolveBlogMeta(post);
+  return {
+    url: getPostUrl(post),
+    image: resolvePostImage(post.data.coverImage, slug) ?? resolvePostImage(post.data.ogp?.og_image, slug),
+    formattedDate,
+    description,
+    title: post.data.title,
+    areaName: post.data.areaName,
+  };
+}
 ---
 
-<BlogLayout title="ブログ一覧" description="愛知県三河・名古屋のフロントガラス飛び石修理専門店によるお役立ちブログ一覧。ヒビ割れの応急処置や車検基準などについてプロが分かりやすく解説します。">
+<BlogLayout
+  title="ブログ一覧"
+  description="愛知県三河・名古屋のフロントガラス飛び石修理専門店によるお役立ちブログ一覧。ヒビ割れの応急処置や車検基準などについてプロが分かりやすく解説します。"
+  canonical={canonicalUrl('/blog')}
+  ogType="website"
+>
   
   <!-- ===== HERO SECTION ===== -->
   <section class="blog-hero">
@@ -24,37 +59,70 @@ const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
   <section class="blog-catalog section-light">
     <div class="container">
       
-      <div class="blog-grid">
-        {sortedPosts.map((post) => {
-          const formattedDate = new Date(post.data.pubDate).toLocaleDateString('ja-JP', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit'
-          }).replace(/\//g, '.');
+      {areaGroups.map((group) => (
+        <section class="blog-area-section" data-area-id={group.areaId}>
+          <h2 class="blog-area-heading">📍 {group.areaName}</h2>
+          <div class="blog-grid">
+            {group.posts.map((post) => {
+              const card = cardData(post);
+              return (
+                <article class="blog-post-card">
+                  <a href={card.url} class="card-link">
+                    <div class="card-image-wrap">
+                      {card.image ? (
+                        <img src={card.image} alt={card.title} loading="lazy" />
+                      ) : (
+                        <div class="card-image-fallback">No Image</div>
+                      )}
+                    </div>
+                    <div class="card-body">
+                      <div class="card-meta">
+                        <span class="card-date">🕒 {card.formattedDate}</span>
+                        {card.areaName && <span class="card-area">{card.areaName}</span>}
+                      </div>
+                      <h2 class="card-title">{card.title}</h2>
+                      <p class="card-excerpt">{card.description}</p>
+                      <span class="card-more">記事を読む →</span>
+                    </div>
+                  </a>
+                </article>
+              );
+            })}
+          </div>
+        </section>
+      ))}
 
-          return (
-            <article class="blog-post-card">
-              <a href={`/blog/${post.data.slug}`} class="card-link">
-                <div class="card-image-wrap">
-                  {post.data.heroImage ? (
-                    <img src={post.data.heroImage} alt={post.data.title} loading="lazy" />
-                  ) : (
-                    <div class="card-image-fallback">No Image</div>
-                  )}
-                </div>
-                <div class="card-body">
-                  <div class="card-meta">
-                    <span class="card-date">🕒 {formattedDate}</span>
-                  </div>
-                  <h2 class="card-title">{post.data.title}</h2>
-                  <p class="card-excerpt">{post.data.description}</p>
-                  <span class="card-more">記事を読む →</span>
-                </div>
-              </a>
-            </article>
-          );
-        })}
-      </div>
+      {otherPosts.length > 0 && (
+        <section class="blog-area-section">
+          <h2 class="blog-area-heading">📘 お役立ち情報</h2>
+          <div class="blog-grid">
+            {otherPosts.map((post) => {
+              const card = cardData(post);
+              return (
+                <article class="blog-post-card">
+                  <a href={card.url} class="card-link">
+                    <div class="card-image-wrap">
+                      {card.image ? (
+                        <img src={card.image} alt={card.title} loading="lazy" />
+                      ) : (
+                        <div class="card-image-fallback">No Image</div>
+                      )}
+                    </div>
+                    <div class="card-body">
+                      <div class="card-meta">
+                        <span class="card-date">🕒 {card.formattedDate}</span>
+                      </div>
+                      <h2 class="card-title">{card.title}</h2>
+                      <p class="card-excerpt">{card.description}</p>
+                      <span class="card-more">記事を読む →</span>
+                    </div>
+                  </a>
+                </article>
+              );
+            })}
+          </div>
+        </section>
+      )}
 
     </div>
   </section>
@@ -128,6 +196,17 @@ const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
   .blog-catalog {
     padding: 60px 0 80px;
   }
+  .blog-area-section {
+    margin-bottom: 48px;
+  }
+  .blog-area-heading {
+    font-size: clamp(20px, 3vw, 26px);
+    font-weight: 900;
+    color: var(--blue-d);
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #E8EFF8;
+  }
   .blog-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -190,11 +269,23 @@ const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
   }
   .card-meta {
     margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
   }
   .card-date {
     font-size: 12px;
     color: var(--gray);
     font-weight: 500;
+  }
+  .card-area {
+    font-size: 11px;
+    font-weight: 700;
+    color: #92400e;
+    background: #fef3c7;
+    border-radius: 999px;
+    padding: 2px 8px;
   }
   .card-title {
     font-size: 18px;

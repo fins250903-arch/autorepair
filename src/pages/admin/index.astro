@@ -1,0 +1,19 @@
+---
+export const prerender = true;
+---
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>ブログ管理 | フロントウインドウリペア</title>
+    <link rel="cms-config-url" type="text/yaml" href="/admin/config.yml" />
+  </head>
+  <body>
+    <script is:inline src="https://unpkg.com/decap-cms@3.8.0/dist/decap-cms.js"></script>
+    <script is:inline src="/admin/cms-hooks.js"></script>
+    <script is:inline src="/admin/decap-custom.js"></script>
+    <script is:inline src="/admin/blog-list-enhance.js"></script>
+  </body>
+</html>
