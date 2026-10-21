@@ -1,0 +1,11 @@
+{
+  "name": "carwindow",
+  "install": "npm ci",
+  "terminals": [
+    {
+      "name": "astro-dev",
+      "command": "npm run dev -- --host"
+    }
+  ],
+  "ports": [4321]
+}
